@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peter | Aspiring Developer</title>
+    <title>Piet | Aspiring Developer</title>
     <style>
         * {
             margin: 0;
@@ -50,8 +50,9 @@
         }
 
         nav .logo {
-            font-size: 1.25rem;
-            font-weight: 700;
+            font-size: 1.75rem;
+            font-weight: 800;
+            letter-spacing: 0.04em;
             color: var(--primary);
         }
 
@@ -86,9 +87,11 @@
         }
 
         .hero h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
             animation: fadeInUp 0.8s ease-out;
         }
 
@@ -99,8 +102,9 @@
         }
 
         .hero .cta-btn {
-            margin-top: 2rem;
-            padding: 0.75rem 2rem;
+            margin-top: 133.5rem;
+            transform: translateY(20px);
+            padding:  0.75rem 2rem;
             background: var(--primary);
             color: var(--white);
             text-decoration: none;
@@ -149,6 +153,43 @@
             font-size: 1.125rem;
             text-align: center;
             color: var(--gray-700);
+        }
+
+        /* Skills Section */
+        .skills {
+            background: #ffffff;
+        }
+
+        .skills-list {
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .skill {
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--gray-100);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 6px;
+            transition: width 0.8s ease-out;
         }
 
         /* Projects Section */
@@ -253,6 +294,11 @@
             }
         }
 
+        .hero-content {
+            transform-origin: center center;
+            transition: transform 0.1s ease-out, opacity 0.1s ease-out;
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             .hero h1 {
@@ -261,6 +307,7 @@
 
             .hero .tagline {
                 font-size: 1.25rem;
+                margin-bottom: 2rem;
             }
 
             nav .nav-links {
@@ -277,9 +324,10 @@
 
     <!-- Navigation -->
     <nav>
-        <div class="logo">Peter</div>
+        <div class="logo">Piet</div>
         <ul class="nav-links">
             <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -287,9 +335,11 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Peter</h1>
-        <p class="tagline">Aspiring Developer</p>
-        <a href="#projects" class="cta-btn">View My Work</a>
+        <div class="hero-content">
+            <h1>Piet</h1>
+            <p class="tagline">Aspiring Developer</p>
+            <a href="#projects" class="cta-btn">View My Work</a>
+        </div>
     </section>
 
     <!-- About Section -->
@@ -297,11 +347,47 @@
         <div class="container">
             <h2>About Me</h2>
             <p>
-                Hi, I'm Peter — a passionate aspiring developer eager to build impactful software.
+                Hi, I'm Piet — a passionate aspiring developer eager to build impactful software.
                 I love learning new technologies, solving problems, and turning ideas into reality
                 through code. Currently exploring web development, programming fundamentals, and
                 everything in between.
             </p>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skills-list">
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>HTML</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 90%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>CSS</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 85%;"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -334,14 +420,38 @@
         <div class="container">
             <h2>Contact</h2>
             <p>I'd love to hear from you! Feel free to reach out.</p>
-            <a href="mailto:peter@example.com">peter@example.com</a>
+            <a href="mailto:piet@example.com">piet@example.com</a>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Peter. All rights reserved.</p>
+        <p>&copy; 2025 Piet. All rights reserved.</p>
     </footer>
 
+    <script>
+        (function () {
+            const hero = document.querySelector('.hero');
+            const heroContent = document.querySelector('.hero-content');
+
+            if (!hero || !heroContent) return;
+
+            // Initial state: zoomed in slightly (entry animation)
+            heroContent.style.transform = 'scale(1)';
+            heroContent.style.opacity = '1';
+
+            const observer = new IntersectionObserver(
+                function ([entry]) {
+                    const ratio = entry.intersectionRatio;
+                    // When fully visible, scale is 1; as it scrolls out, scale down to 0.85
+                    const scale = 0.85 + (ratio * 0.15);
+                    heroContent.style.transform = 'scale(' + scale + ')';
+                },
+                { threshold: Array.from({ length: 21 }, function (_, i) { return i / 20; }) }
+            );
+
+            observer.observe(hero);
+        })();
+    </script>
 </body>
 </html>
