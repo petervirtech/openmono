@@ -426,9 +426,13 @@
 
     <!-- Footer -->
     <footer>
-        <p>&copy; 2025 Piet. All rights reserved.</p>
+        <p>&copy; <span id="year"></span> Piet. All rights reserved.</p>
+        <p>Built with <a href="https://www.openmonoagent.ai/" target="_blank" rel="noopener">OpenMono Agent</a></p>
     </footer>
 
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
     <script>
         (function () {
             const hero = document.querySelector('.hero');
