@@ -282,6 +282,40 @@
             color: var(--primary);
         }
 
+        /* Back to top button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(10px);
+            transition: opacity 0.3s, visibility 0.3s, transform 0.3s, background 0.3s;
+            z-index: 999;
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .back-to-top:hover {
+            background: var(--primary-dark);
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -430,10 +464,31 @@
         <p>Built with <a href="https://www.openmonoagent.ai/" target="_blank" rel="noopener">OpenMono Agent</a></p>
     </footer>
 
+    <!-- Back to top button -->
+    <button class="back-to-top" id="backToTop" aria-label="Scroll back to top">&#8593;</button>
+
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-    <script>
+
+        // Back to top button visibility
+        (function () {
+            var btn = document.getElementById('backToTop');
+            if (!btn) return;
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 400) {
+                    btn.classList.add('visible');
+                } else {
+                    btn.classList.remove('visible');
+                }
+            }, { passive: true });
+
+            btn.addEventListener('click', function () {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        })();
+
+        // Hero zoom on scroll
         (function () {
             const hero = document.querySelector('.hero');
             const heroContent = document.querySelector('.hero-content');
