@@ -13,12 +13,12 @@ Infrastructure Product Managers struggle to break down high-level leadership Epi
 
 ```
 ┌─────────────────────────────────────────────────────┐
-│              CBS PM Buddy (Desktop)                  │
+│              CBS PM Buddy API                        │
 ├─────────────────────────────────────────────────────┤
 │                                                      │
 │  ┌──────────┐    ┌──────────────────┐               │
-│  │ Streamlit│◄──►│ Business Logic   │               │
-│  │ UI Layer │    │ Orchestrator     │               │
+│  │ FastAPI  │    │ Business Logic   │               │
+│  │ Routes   │◄──►│ Orchestrator     │               │
 │  └──────────┘    └───────┬──────────┘               │
 │                          │                           │
 │                   ┌──────▼───────┐    ┌────────────┐│
@@ -57,9 +57,21 @@ Single SQLite database at `~/.local/share/cbs-pm-buddy/data.db`. Three tables: `
 
 The LLM is used exclusively for decomposition suggestions. Supported backends: Ollama (default), LM Studio, or any OpenAI-compatible endpoint. See [LLM_INTEGRATION.md](LLM_INTEGRATION.md).
 
-## 6. UI
+## 6. API
 
-Streamlit-based desktop app. Three-panel layout: sidebar with Epic list, main area showing the selected Epic's Features and Stories. See [UI_DESIGN.md](UI_DESIGN.md).
+FastAPI-based REST API with auto-generated OpenAPI/Swagger docs at `/docs`. Endpoints for CRUD operations on Epics, Features, and User Stories.
+
+### Current Endpoints
+
+| Method | Path | Description |
+|--------|------|-------------|
+| `GET` | `/` | Health check |
+| `GET` | `/items` | List items (legacy) |
+| `POST` | `/items` | Create item (legacy) |
+| `GET` | `/items/{id}` | Get item by ID (legacy) |
+| `DELETE` | `/items/{id}` | Delete item (legacy) |
+
+Full entity endpoints (Epic/Feature/UserStory) to be added as the API layer is extended.
 
 ## 7. Workflow
 
@@ -67,13 +79,15 @@ PM creates Epic → clicks "Decompose" → LLM suggests Features → PM reviews 
 
 ## 8. Dependencies
 
-| Package | Purpose |
-|---------|---------|
-| `streamlit` | Desktop UI |
-| `pydantic` | Data validation & models |
-| `sqlite3` (stdlib) | Local database |
-| `httpx` | Async HTTP client for LLM APIs |
-| `pyyaml` | Config file handling |
+| Package | Purpose | Status |
+|---------|---------|--------|
+| `fastapi` | REST API framework | ✅ Installed |
+| `uvicorn` | ASGI server | ✅ Installed |
+| `pydantic` | Data validation & models | ✅ Installed |
+| `sqlite3` (stdlib) | Local database | ✅ Used — see `src/cbs_pm_buddy/db/database.py` |
+| `streamlit` | Desktop UI | 📋 Planned |
+| `httpx` | Async HTTP client for LLM APIs | 📋 Planned |
+| `pyyaml` | Config file handling | 📋 Planned |
 
 ## 9. Non-Functional Requirements
 

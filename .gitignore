@@ -15,3 +15,7 @@ build/
 # OS
 .DS_Store
 Thumbs.db
+
+# SQLite data files
+*.db
+~/.local/share/cbs-pm-buddy/
