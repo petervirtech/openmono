@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "agent_id": "agt_c07a36adeb17acc8",
-  "host_workspace": "/Users/peter/source/openmono",
-  "port": 57378,
-  "container_id": "217f424d091e",
-  "started_at": "2026-09-17T18:52:06.2680135Z"
+  "agent_id": "agt_c52ddf65534b7b46",
+  "host_workspace": "/workspace",
+  "port": 7475,
+  "container_id": "491c50666f89",
+  "started_at": "2026-09-18T14:01:04.0861888Z"
 }
